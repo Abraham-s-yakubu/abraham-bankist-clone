@@ -7,7 +7,7 @@
 // Data
 const account1 = {
   owner: "Jonas Schmedtmann",
-  movements: [25000, 450, -400, 3000, -650, -930, 7000, 13000],
+  movements: [250000, 4500, -40000, 30000, -6500, -9300, 70000, 13000],
   interestRate: 1.2, // %
   pin: 1111,
 };
@@ -93,7 +93,26 @@ const createUserName = function (accs) {
   });
 };
 createUserName(accounts);
-
+const calcPrintSummary = function (movements) {
+  const incomes = movements
+    .filter((mov) => mov > 0)
+    .reduce((acc, mov) => mov + acc, 0);
+  labelSumIn.textContent = `${incomes}₦`;
+  const out = movements
+    .filter((mov) => mov < 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumOut.textContent = `${Math.abs(out)}₦`;
+  const interest = movements
+    .filter((mov) => mov > 0)
+    .map((deposit) => (deposit * account1.interestRate) / 100)
+    .filter((int, i, arr) => {
+      // console.log(arr);
+      return int >= 500;
+    })
+    .reduce((acc, int) => acc + int, 0);
+  labelSumInterest.textContent = `${interest}₦`;
+};
+calcPrintSummary(account1.movements);
 // console.log(username);
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
@@ -240,6 +259,53 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 //   console.log(acc);
 //   return acc + curr;
 // }, 0);
-const balance = movements.reduce((acc, curr, i, arr) => acc + curr, 0);
-console.log(balance);
-// maximum value
+// const balance = movements.reduce((acc, curr, i, arr) => acc + curr, 0);
+// console.log(balance);
+// // maximum value
+// const max = movements.reduce((acc, mov) => {
+//   if (acc > mov) return acc;
+//   else return mov;
+// }, movements[0]);
+// console.log(max);
+////////// coding challenge/////////
+// const calcAverageHumanAge = function (Ages) {
+//   const humanAge = Ages.map((dog) => (dog <= 2 ? 2 * dog : 16 + dog * 4));
+//   console.log(humanAge);
+//   const adultDogs = humanAge.filter((age) => age >= 18);
+//   console.log(adultDogs);
+//   // const TotalHumanAge =
+//   //   adultDogs.reduce((acc, age) => acc + age, 0) / adultDogs.length;
+//   // another way of calculating average
+//   const TotalHumanAge = adultDogs.reduce(
+//     (acc, age, i, arr) => acc + age / arr.length,
+//     0
+//   );
+
+//   return TotalHumanAge;
+// };
+// const avg1 = calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]);
+// console.log("/////////////////");
+// const avg2 = calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]);
+////////// coding challenge 3//
+// const calcAverageHumanAge = (ages) =>
+//   ages
+//     .map((dog) => (dog <= 2 ? 2 * dog : 16 + dog * 4))
+//     .filter((age) => age >= 18)
+//     .reduce((acc, age, i, arr) => acc + age / arr.length, 0);
+// const avg1 = calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]);
+// // console.log("/////////////////");
+// const avg2 = calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]);
+// console.log(avg1, avg2);
+// // chaining methods//
+// const dollarToNgr = 0.0024;
+// const totalDepositInUsd = movements
+//   .filter((mov) => mov > 0)
+//   .map((mov) => mov * dollarToNgr)
+//   .reduce((acc, mov) => acc + mov, 0);
+// console.log(movements);
+// console.log(totalDepositInUsd);
+/////////////////////////////////find method/////////
+// const firstWithdrawal = movements.find((mov) => mov < 0);
+// console.log(movements);
+// console.log(firstWithdrawal);
+console.log(accounts);
