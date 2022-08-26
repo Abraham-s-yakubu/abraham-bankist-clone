@@ -200,6 +200,7 @@ btnTransfer.addEventListener("click", function (e) {
       reieverAccount.movements.push(amount);
       // update ui
       updateUI(currentAccount);
+      alert("transaction successful updating account");
     }
   } else alert("transaction Failed (incorrect recipient or insufficient funds) ");
 });
@@ -254,7 +255,53 @@ btnSort.addEventListener("click", function (e) {
   sorted = !sorted;
 });
 /////////////////lectures///
-console.log(23 === 23.0);
-console.log(0.1 + 0.2 === 0.3);
-console.log(Number("23"));
-console.log(+"23");
+// console.log(23 === 23.0);
+// console.log(0.1 + 0.2 === 0.3);
+// convert str to numbers
+// console.log(Number("23"));
+// console.log(+"23");
+// // parsing
+// console.log(Number.parseInt("30px", 10));
+// console.log(Number.parseInt("2.5rem", 10));
+// console.log(Number.parseFloat("2.5rem", 10));
+// check if value is NAN
+// console.log(Number.isNaN(20));
+// console.log(Number.isNaN("20"));
+// console.log(Number.isNaN(+"20x"));
+// best way of checking  a number
+// console.log(Number.isFinite(20));
+// console.log(Number.isFinite("20"));
+// //
+// console.log(Number.isInteger(23));
+// console.log(Number.isInteger(23.0));
+// console.log(Number.isInteger(23.1));
+//////////math and rounding
+// console.log(Math.sqrt(25));
+// console.log(25 ** (1 / 2));
+// console.log(8 ** (1 / 3));
+// console.log(Math.max(5, 11, 45, 2, 4, 6));
+// console.log(Math.max(5, 11, "45", 2, 4, 6));
+// console.log(Math.min(5, 11, "45", 2, 4, 6));
+// calculating the area of a circle
+// console.log(Math.PI * Number.parseFloat("10px") ** 2);
+// console.log(Math.trunc(Math.random() * 6) + 1);
+// creating randon number between two numbers
+const randonInt = (min, max) =>
+  Math.floor(Math.random() * (max - min) + 1) + min;
+console.log(randonInt(10, 20));
+//rounding intergals
+// console.log(Math.trunc(23.3));
+// //
+// console.log(Math.round(23.3));
+// console.log(Math.round(23.5));
+// //
+// console.log(Math.ceil(23.3));
+// console.log(Math.ceil(23.5));
+// //
+// console.log(Math.floor(23.3));
+// console.log(Math.floor(23.5));
+//// floor vs trunc
+// console.log(Math.floor(-23.5));
+// console.log(Math.trunc(-23.5));
+////////rounding decimals////////////
+console.log((2.7).toFixed(0));
